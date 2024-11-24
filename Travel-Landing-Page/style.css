@@ -1,0 +1,223 @@
+:root {
+    --primary-color: #df6951;
+    --secondary-color: #f1a501;
+    --text-color: #181e4b;
+    --background-color: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    line-height: 1.5;
+    font-family: "Volkhov", serif;
+    background-color: var(--background-color, white);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-color, black);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 16rem;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+nav ul li:hover {
+    color: var(--primary-color);
+}
+
+.signup {
+    border: 1px solid #181e4b;
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+
+.signup:hover {
+    border-color: var(--primary-color);
+}
+
+section {
+    margin: 4rem 16rem;
+}
+
+.decore {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    z-index: -1;
+}
+.ellipse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Hero */
+#hero {
+    display: flex;
+    justify-content: space-between;
+}
+
+#description {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* max-width: 47%; */
+    max-width: 630px;
+}
+
+#description h1 {
+    font-size: 5.25rem;
+    line-height: 1;
+}
+
+#description p:first-of-type {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+.main-button {
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 7px 10px rgb(223, 105, 81, 0.3);
+    margin-right: 2rem;
+}
+
+.rounded-button {
+    border-radius: 100%;
+    padding: 10px 16px;
+    margin-right: 0.5rem;
+    box-shadow: 0px 7px 10px rgb(223, 105, 81, 0.3);
+}
+
+.secondary {
+    color: white;
+    background-color: var(--secondary-color);
+}
+.primary {
+    color: white;
+    background-color: var(--primary-color);
+}
+
+#hero img {
+    flex-shrink: 0;
+    width: 600px;
+    aspect-ratio: 104/100;
+}
+
+/* Services section */
+#services,
+#destinations {
+    text-align: center;
+    position: relative;
+    margin-bottom: 10rem;
+    margin-top: 10rem;
+}
+
+section div h2 {
+    font-weight: 700;
+    font-size: 3.1rem;
+    margin-bottom: 4.5rem;
+}
+section div p {
+    font-size: 1.1rem;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.service-card {
+    background-color: var(--background-color);
+    width: 22%;
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 7px 10px rgba(41, 41, 41, 0.1);
+    border-radius: 36px;
+    gap: 0.7rem;
+}
+
+.service-card img {
+    flex-shrink: 0;
+    max-width: 60%;
+    height: 40%;
+}
+
+.service-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.service-card p {
+    font-size: 0.9rem;
+}
+
+.groupe {
+    position: absolute;
+    top: -0.5rem;
+    right: -8rem;
+}
+
+.rectangle {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 23%;
+    z-index: -1;
+}
