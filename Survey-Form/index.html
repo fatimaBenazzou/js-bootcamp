@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Survey Form</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <main>
+            <!-- header -->
+            <header>
+                <h1>Survey Form</h1>
+                <p>Thank You For Taking Your Time To Give Us FeedBack</p>
+            </header>
+
+            <!-- Form -->
+            <form action="" method="get">
+                <!-- name -->
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" required />
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required />
+                </div>
+
+                <!-- age -->
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" min="1" name="age" id="age" required />
+                </div>
+
+                <!-- role -->
+                <div class="form-group">
+                    <label for="occupation">Choose A Role That Best Describes You </label>
+                    <select name="occupation" id="dropdown">
+                        <option selected disabled value="">Select Your Role</option>
+                        <option value="student">Student</option>
+                        <option value="full-time-job">Full Time Job</option>
+                        <option value="part-time-job">Part Time Job</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- recommendation radio -->
+                <div class="form-group">
+                    <label for="recommandation"
+                        >Would You Recommend Our Product To A Friend ?</label
+                    >
+
+                    <div class="radio-group">
+                        <input
+                            type="radio"
+                            id="never"
+                            name="recommandation"
+                            value="never"
+                            checked
+                        />
+                        <label for="never">Never</label>
+                    </div>
+
+                    <div class="radio-group">
+                        <input type="radio" id="Maybe" name="recommandation" value="Maybe" />
+                        <label for="Maybe">Maybe</label>
+                    </div>
+
+                    <div class="radio-group">
+                        <input type="radio" id="likely" name="recommandation" value="likely" />
+                        <label for="likely">Likely</label>
+                    </div>
+
+                    <div class="radio-group">
+                        <input
+                            type="radio"
+                            id="definitely"
+                            name="recommandation"
+                            value="definitely"
+                        />
+                        <label for="definitely">Definitely</label>
+                    </div>
+                </div>
+
+                <!-- liked checkbox -->
+                <div class="form-group">
+                    <label for="liked">Select Things That You Liked About Our Product</label>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="ui" name="ui" checked />
+                        <label for="ui">UI</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="features" name="features" />
+                        <label for="features">Features</label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="Service" name="Service" />
+                        <label for="Service">service</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="simpleness" name="simpleness" />
+                        <label for="simpleness">Simpleness</label>
+                    </div>
+                </div>
+
+                <!-- remark -->
+                <div class="form-group">
+                    <label for="remark">Remarks</label>
+                    <textarea
+                        name="remark"
+                        id="remark"
+                        placeholder="Tell Us How Can We Improve.."
+                    ></textarea>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-group">
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

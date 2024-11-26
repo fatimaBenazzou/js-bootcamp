@@ -18,10 +18,11 @@ body {
 
 body {
     line-height: 1.5;
-    font-family: "Volkhov", serif;
+    font-family: "Poppins", serif;
     background-color: var(--background-color, white);
     font-weight: 400;
     font-size: 16px;
+    margin: 0 14rem;
     color: var(--text-color, black);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -65,7 +66,7 @@ button {
 header {
     display: flex;
     justify-content: space-between;
-    padding: 2rem 16rem;
+    padding: 2rem 14rem;
 }
 
 nav ul {
@@ -89,20 +90,7 @@ nav ul li:hover {
 }
 
 section {
-    margin: 4rem 16rem;
-}
-
-.decore {
-    position: absolute;
-    top: -2.5rem;
-    right: 0;
-    z-index: -1;
-}
-.ellipse {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
+    margin: 4rem 0;
 }
 
 /* Hero */
@@ -120,7 +108,8 @@ section {
 }
 
 #description h1 {
-    font-size: 5.25rem;
+    font-family: "Volkhov", serif;
+    font-size: 5rem;
     line-height: 1;
 }
 
@@ -140,7 +129,7 @@ section {
 
 .rounded-button {
     border-radius: 100%;
-    padding: 10px 16px;
+    padding: 13px 16px;
     margin-right: 0.5rem;
     box-shadow: 0px 7px 10px rgb(223, 105, 81, 0.3);
 }
@@ -160,64 +149,16 @@ section {
     aspect-ratio: 104/100;
 }
 
-/* Services section */
-#services,
-#destinations {
-    text-align: center;
-    position: relative;
-    margin-bottom: 10rem;
-    margin-top: 10rem;
-}
-
-section div h2 {
-    font-weight: 700;
-    font-size: 3.1rem;
-    margin-bottom: 4.5rem;
-}
-section div p {
-    font-size: 1.1rem;
-}
-
-.list {
-    display: flex;
-    justify-content: space-between;
-}
-
-.service-card {
-    background-color: var(--background-color);
-    width: 22%;
-    padding: 2rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0px 7px 10px rgba(41, 41, 41, 0.1);
-    border-radius: 36px;
-    gap: 0.7rem;
-}
-
-.service-card img {
-    flex-shrink: 0;
-    max-width: 60%;
-    height: 40%;
-}
-
-.service-card h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-.service-card p {
-    font-size: 0.9rem;
-}
-
-.groupe {
-    position: absolute;
-    top: -0.5rem;
-    right: -8rem;
-}
-
-.rectangle {
-    position: absolute;
-    bottom: -2.5rem;
-    left: 23%;
-    z-index: -1;
+.line-md--play-filled {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' fill-opacity='0' stroke='%23000' stroke-dasharray='40' stroke-dashoffset='40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 6l10 6l-10 6Z'%3E%3Canimate fill='freeze' attributeName='fill-opacity' begin='0.5s' dur='0.5s' values='0;1'/%3E%3Canimate fill='freeze' attributeName='stroke-dashoffset' dur='0.5s' values='40;0'/%3E%3C/path%3E%3C/svg%3E");
+    background-color: currentColor;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
 }
