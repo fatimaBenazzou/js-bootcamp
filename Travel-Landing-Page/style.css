@@ -187,7 +187,8 @@ section {
 }
 
 /* Services section */
-#services {
+#services,
+#destinations {
     position: relative;
     text-align: center;
     margin: 10rem 0;
@@ -209,6 +210,7 @@ h2 {
 .list {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .service-card {
@@ -254,4 +256,324 @@ h4 {
     position: absolute;
     top: -3rem;
     right: -7rem;
+}
+
+/* destination */
+.destination-card {
+    height: 22rem;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 7px 10px rgba(41, 41, 41, 0.1);
+}
+
+.destination-card img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.destination-info {
+    position: absolute;
+    bottom: 0;
+    background-color: var(--background-color);
+    width: 100%;
+    text-align: left;
+    padding: 1.5rem;
+}
+
+.destination-location {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.iconamoon--location-fill {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M20.48 7.519c1.214-2.55-1.448-5.213-3.999-3.999L4.822 9.072c-2.39 1.138-2.242 4.589.237 5.518l2.739 1.027a1 1 0 0 1 .585.585l1.027 2.74c.93 2.478 4.38 2.626 5.518.236z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-color: black;
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    margin-right: 0.5rem;
+}
+
+.khalouta {
+    position: absolute;
+    bottom: 0;
+    right: -4.2rem;
+    z-index: -50;
+}
+
+/* Booking */
+#booking {
+    align-items: center;
+}
+
+.booking-desc,
+#testemonials div:first-of-type {
+    max-width: 40%;
+}
+
+.booking-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+}
+.booking-card {
+    display: flex;
+    gap: 1rem;
+}
+.booking-card p {
+    font-size: 0.9rem;
+}
+.booking-card h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* newsletter */
+#newsletter div {
+    background-color: #dfd7f9;
+    border-radius: 90px 20px 20px 20px;
+    padding: 7rem;
+    text-align: center;
+}
+
+#newsletter div p {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+input[type="email"] {
+    border-radius: 10px;
+    background-color: white;
+    padding: 1rem 1.5rem;
+}
+
+/* input[type="submit"] {
+   
+} */
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+    body {
+        margin: 0 1rem;
+        font-size: 12px;
+    }
+    nav ul {
+        display: none;
+        /* visibility: hidden; */
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    #hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    #description h1 {
+        font-size: 2.5rem;
+    }
+    #description p:first-of-type {
+        font-size: 1rem;
+    }
+    #description img {
+        width: 100%;
+        aspect-ratio: auto;
+    }
+
+    #services {
+        gap: 0.2rem;
+    }
+    .service-card {
+        width: 47%;
+        margin: 0 0.2rem 1rem 0.2rem;
+    }
+
+    #destinations .list {
+        gap: 1.5rem;
+    }
+
+    .destination-card {
+        width: 100%;
+        height: 28rem;
+    }
+
+    #booking,
+    #testemonials {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .booking-desc,
+    #testemonials div:first-child {
+        max-width: 100%;
+    }
+
+    .booking-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .booking-card h3,
+    .booking-card p {
+        font-size: small;
+    }
+
+    #newsletter div {
+        padding: 3rem;
+    }
+
+    #newsletter div p {
+        font-size: large;
+        margin-bottom: 1rem;
+    }
+    form {
+        flex-direction: column;
+        align-items: center;
+    }
+    input[type="email"] {
+        width: 100%;
+    }
+    input[type="submit"] {
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    body {
+        margin: 0 3rem;
+        font-size: 14px;
+    }
+
+    header {
+        padding: 1.5rem 0;
+    }
+
+    nav ul {
+        gap: 2rem;
+    }
+
+    #hero {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    #description h1 {
+        font-size: 4rem;
+    }
+
+    .list {
+        gap: 2rem;
+    }
+
+    .service-card,
+    .destination-card {
+        width: 45%;
+    }
+
+    #newsletter div {
+        padding: 5rem;
+    }
+
+    #booking {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .booking-desc,
+    #testemonials div:first-of-type {
+        max-width: 50%;
+    }
+
+    .booking-steps {
+        gap: 2rem;
+    }
+
+    .booking-card h3,
+    .booking-card p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 767px) {
+    #newsletter div {
+        padding: 3rem;
+        border-radius: 20px;
+    }
+
+    #newsletter div p {
+        font-size: 1.5rem;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    input[type="email"] {
+        width: 100%;
+        padding: 0.8rem 1rem;
+    }
+}
+
+/* Desktop (1024px and above) */
+@media (min-width: 1024px) {
+    body {
+        margin: 0 14rem;
+        font-size: 16px;
+    }
+
+    header {
+        padding: 2rem 0;
+    }
+
+    #hero {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #description h1 {
+        font-size: 5rem;
+    }
+
+    .list {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .service-card,
+    .destination-card {
+        width: 22%;
+    }
+
+    #newsletter div {
+        padding: 7rem;
+    }
+    #newsletter div {
+        padding: 5rem;
+    }
+
+    #newsletter div p {
+        font-size: 1.8rem;
+    }
+
+    input[type="email"] {
+        padding: 1rem 1.2rem;
+    }
 }
