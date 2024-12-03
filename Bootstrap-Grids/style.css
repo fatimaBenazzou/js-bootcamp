@@ -1,0 +1,23 @@
+.block {
+    width: 100%;
+    height: 100px;
+}
+
+.blue {
+    background-color: #0074d9;
+}
+.yellow {
+    background-color: #ffdc00;
+}
+.red {
+    background-color: #ff4136;
+}
+.green {
+    background-color: #2ecc40;
+}
+.purple {
+    background-color: #b10dc9;
+}
+.teal {
+    background-color: #39cccc;
+}
