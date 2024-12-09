@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .textGradientStyle {
+        @apply bg-textGradient inline-block text-transparent bg-clip-text;
+    }
+
+    .gradientButton {
+        position: relative;
+        @apply border rounded-full border-subColor px-6 py-2;
+    }
+
+    .gradientButton::after {
+        content: " ";
+        background-image: linear-gradient(to right, #22d3ee00 0%, #22d3ee 50%, #22d3ee00 100%);
+        @apply absolute left-1/2 bottom-0 w-full max-w-64 -translate-x-1/2 h-[1px];
+    }
+}

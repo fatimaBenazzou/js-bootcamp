@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tailwind Landing page</title>
+        <link rel="stylesheet" href="styles/output.css" />
+        <link rel="stylesheet" href="styles/input.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="flex font-[Inter] flex-col items-center text-subColor bg-bgColor">
+        <img class="absolute top-0 -z-50" src="/images/ellipse.svg" alt="" />
+        <header class="container py-4">
+            <nav class="flex justify-between">
+                <a class="text-textColor text-xl font-bold" href="/">Cobalt</a>
+                <ul class="flex gap-8">
+                    <li><a href="/">Blog</a></li>
+                    <li><a class="gradientButton" href="/">Join the waitlist</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <!-- Hero section -->
+            <section id="Hero w-full">
+                <div class="max-w-1/2 text-center flex flex-col gap-4">
+                    <h1 class="textGradientStyle text-7xl font-bold">
+                        Unleash the power of intuitive finance
+                    </h1>
+                    <p class="text-xl">
+                        Say goodbye to the outdated financial tools. Every small business owner,
+                        regardless of the background, can now manage their business like a pro.
+                        Simple. Intuitive. And never boring.
+                    </p>
+                    <button class="gradientButton mx-auto max-w-fit">Join the waitlist</button>
+                    <a href="/">Learn more</a>
+                </div>
+                <div>
+                    <img src="/images/dashboard.png" alt="" />
+                </div>
+            </section>
+        </main>
+        <footer></footer>
+    </body>
+</html>
