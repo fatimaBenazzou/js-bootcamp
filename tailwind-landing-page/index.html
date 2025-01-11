@@ -13,8 +13,8 @@
             rel="stylesheet"
         />
     </head>
-    <body class="flex font-[Inter] flex-col items-center text-subColor bg-bgColor">
-        <img class="absolute top-0 -z-50" src="/images/ellipse.svg" alt="" />
+    <body class="flex font-[Inter] flex-col gap-16 items-center text-subColor bg-bgColor">
+        <img class="absolute top-0 -z-50" src="./images/ellipse.svg" alt="" />
         <header class="container py-4">
             <nav class="flex justify-between">
                 <a class="text-textColor text-xl font-bold" href="/">Cobalt</a>
@@ -24,7 +24,7 @@
                 </ul>
             </nav>
         </header>
-        <main>
+        <main class="flex flex-col gap-20">
             <!-- Hero section -->
             <section id="Hero" class="flex flex-col gap-12 items-center py-12">
                 <div class="w-[45%] text-center items-center flex flex-col gap-8">
@@ -40,7 +40,7 @@
                     <a href="/">Learn more</a>
                 </div>
                 <div>
-                    <img src="/images/dashboard.png" alt="" />
+                    <img src="./images/dashboard.png" alt="" />
                 </div>
             </section>
             <!-- Finance section-->
@@ -68,7 +68,7 @@
                 </div>
                 <div class="grid grid-cols-12 gap-8">
                     <div class="col-span-4 card">
-                        <img src="/images/toolkit1.png" alt="" />
+                        <img src="./images/toolkit1.png" alt="" />
                         <h3 class="text-lg font-medium text-textColor">
                             Insights at your fingertips
                         </h3>
@@ -78,7 +78,7 @@
                         </p>
                     </div>
                     <div class="col-span-4 card">
-                        <img src="/images/toolkit2.png" alt="" />
+                        <img src="./images/toolkit2.png" alt="" />
                         <h3 class="text-lg font-medium text-textColor">
                             Insights at your fingertips
                         </h3>
@@ -88,7 +88,7 @@
                         </p>
                     </div>
                     <div class="col-span-4 card">
-                        <img src="/images/toolkit3.png" alt="" />
+                        <img src="./images/toolkit3.png" alt="" />
                         <h3 class="text-lg font-medium text-textColor">
                             Insights at your fingertips
                         </h3>
@@ -98,7 +98,7 @@
                         </p>
                     </div>
                     <div class="col-span-7 card">
-                        <img src="/images/toolkit4.png" alt="" />
+                        <img src="./images/toolkit4.png" alt="" />
                         <h3 class="text-lg font-medium text-textColor">
                             Insights at your fingertips
                         </h3>
@@ -108,7 +108,7 @@
                         </p>
                     </div>
                     <div class="col-span-5 card">
-                        <img src="/images/toolkit5.png" alt="" />
+                        <img src="./images/toolkit5.png" alt="" />
                         <h3 class="text-lg font-medium text-textColor">
                             Insights at your fingertips
                         </h3>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="grid grid-cols-2 gap-8">
                     <div class="col-span-1 card">
-                        <img src="/images/meet1.png" alt="" />
+                        <img src="./images/meet1.png" alt="" />
                         <h3 class="text-lg font-medium text-textColor">
                             Insights at your fingertips
                         </h3>
@@ -139,7 +139,7 @@
                         </p>
                     </div>
                     <div class="col-span-1 card">
-                        <img src="/images/meet2.png" alt="" />
+                        <img src="./images/meet2.png" alt="" />
                         <h3 class="text-lg font-medium text-textColor">
                             Insights at your fingertips
                         </h3>
@@ -151,6 +151,48 @@
                 </div>
             </section>
         </main>
-        <footer></footer>
+        <footer class="relative">
+            <img class="-z-50 absolute -left-1/2 -bottom-1/3" src="images/ellipse2.svg" alt="" />
+            <section class="flex py-16 flex-col justify-center items-center text-center gap-10">
+                <hr class="gradientLine" />
+                <h2 class="subHeader w-[55%]">
+                    See where financial automation can take your business.
+                </h2>
+                <p>The first financial tool you'll love. And the last one you'll ever need.</p>
+                <button class="gradientButton bg-bgColor">Join the waitlist</button>
+            </section>
+            <hr class="w-full opacity-20" />
+            <section class="container flex justify-between pb-20 pt-12">
+                <div class="flex flex-col gap-4 w-3/5">
+                    <ul class="flex gap-8 text-textColor/70">
+                        <li>@ 2023 Cobalt Financial Technologies Inc.</li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+
+                    <p>
+                        Cobalt is a trademark or registered trademark of Cobalt Financial
+                        Technologies Inc. Any other trademarks are the property of their respective
+                        owners. Unless otherwise noted, use of third party logos does not imply
+                        endorsement of, sponsorship of, or affiliation with Cobalt.
+                    </p>
+                    <p>
+                        Cobalt is a financial technology company, not a bank. Banking services are
+                        provided by Celtic Bank and Evolve Bank & Trust@, Members FDIC.
+                    </p>
+                </div>
+                <ul class="flex gap-8">
+                    <li>
+                        <a href="#"><span class="pajamas--twitter"></span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="mdi--linkedin"></span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="ic--baseline-facebook"></span></a>
+                    </li>
+                </ul>
+            </section>
+        </footer>
     </body>
 </html>
