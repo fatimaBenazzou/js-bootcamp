@@ -4,27 +4,28 @@
 //   - Two cloud elements that also move horizontally.
 //   - A text element that moves vertically.
 //   - A "man" element whose height will dynamically change.
+const mountainLeft = document.querySelector("#mountain_left");
+const mountainRight = document.querySelector("#mountain_right");
+const cloud1 = document.querySelector("#clouds_1");
+const cloud2 = document.querySelector("#clouds_2");
+const text = document.querySelector("#text");
+const man = document.querySelector("#man");
 
 // Step 2: Add a Scroll Event Listener
 // - Listen for the `scroll` event on the `window` object to detect user scrolling.
+window.addEventListener("scroll", () => {
+    // Step 3: Retrieve Scroll Value
+    // - Inside the event listener, get the current vertical scroll position.
+    // Search for `scrollY` property.
+    let value = window.scrollY;
 
-// Step 3: Retrieve Scroll Value
-// - Inside the event listener, get the current vertical scroll position.
-// Search for `scrollY` property.
-
-// Step 4: Update Element Styles
-// - Modify the styles of each selected element based on the scroll position:
-//   - Move the two mountains horizontally.
-//   - Move the two clouds horizontally, multiplying the scroll value for faster movement.
-//   - Adjust the bottom position of the text to create a vertical movement effect.
-//   - Dynamically adjust the height of the "man" element to shrink as the user scrolls.
-
-// Step 5: Use Formulas for Movement
-// - Use simple arithmetic formulas to calculate the new positions:
-//   - Divide or multiply the scroll value for different speeds and directions of movement.
-//   - Example: For horizontal movement to the left, use a negative value (e.g., `-scrollY`).
-
-// Hint: Experiment with different speeds by adjusting the multiplication/division factors in the formulas.
+    mountainLeft.style.left = `-${value / 0.7}px`;
+    mountainRight.style.left = `${value / 0.7}px`;
+    cloud1.style.left = `${value * 2}px`;
+    cloud2.style.left = `-${value * 2}px`;
+    text.style.bottom = `-${value}px`;
+    man.style.height = `${window.innerHeight - value}px`;
+});
 
 // Step 6: Test the Code
 // - Scroll the page to verify the following:
