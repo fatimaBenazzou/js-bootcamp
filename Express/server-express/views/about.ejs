@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>About</title>
+        <link rel="stylesheet" href="/public/styles/home.css" />
+        "
+    </head>
+    <body>
+        <section>
+            <h2>About Page</h2>
+            <h3><%=user.firstName%> <%=user.lastName%></h3>
+            <p>My note is: <%=user.note%>/20</p>
+            <div>
+                <% if(user.note >= 10) { %>
+                <p>You Passed</p>
+                <% } else { %>
+                <p>Disapointed !</p>
+                <% } %>
+            </div>
+            <div class="skills" style="display: flex; width: 100%">
+                <% user.skills.forEach((skill) => { %>
+                <!--  -->
+                <%- include("components/skill-card", {skill}); %>
+                <!--  -->
+                <% }) %>
+            </div>
+        </section>
+    </body>
+</html>

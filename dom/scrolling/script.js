@@ -26,6 +26,8 @@ window.addEventListener("scroll", () => {
     text.style.bottom = `-${value}px`;
     man.style.height = `${window.innerHeight - value}px`;
 });
+// Fart every 400 pixels scrolled
+fartscroll(100);
 
 // Step 6: Test the Code
 // - Scroll the page to verify the following:
