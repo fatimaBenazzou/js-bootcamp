@@ -55,7 +55,7 @@ Here’s some sample data to insert into your database:
 _Hint: Use `$gte` with the current date minus 7 days._
 
 2.2 **Find users whose `email` ends with `example.com`.**  
-_Hint: Use `$regex`._
+_Hint: Use `$regex`._ 
 
 2.3 **Find users who have more than one tag.**  
 _Hint: Use `$size` and comparison operators._
@@ -80,14 +80,8 @@ _Hint: Use `$size` and comparison operators._
 
 4.1 **Count the number of `active` users.**
 
-4.2 **Group users by their `status` and calculate the average age for each group.**  
-_Hint: Use the `$group` aggregation stage._
-
-4.3 **Find the user with the most recent `lastLogin` date.**  
-_Hint: Use `$sort` and `$limit`._
-
-4.4 **Check if there are any duplicate email addresses in the collection.**  
-_Hint: Use the `$group` and `$match` stages in aggregation._
+4.2 **Find the user with the most recent `lastLogin` date.**  
+_Hint: Use `sort` and `limit`._
 
 ---
 
