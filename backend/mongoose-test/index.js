@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import mediaRoutes from "./routes/media.js";
 import userRoutes from "./routes/user.js";
+import watchHistoryRoutes from "./routes/watchHistory.js";
 
 const app = express();
 const PORT = process.env.PORT || 3333;
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 3333;
 app.use(express.json());
 app.use("/media", mediaRoutes);
 app.use("/users", userRoutes);
+app.use("/watch-history", watchHistoryRoutes);
 
 mongoose
     .connect(process.env.MONGODB_URI, {

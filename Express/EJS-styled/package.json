@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.6",
+    "morgan": "^1.10.0",
+    "tailwindcss": "^4.0.3"
+  },
+  "name": "ejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {
+    "daisyui": "^5.0.0-beta.6",
+    "dotenv": "^16.4.7"
+  },
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon .",
+    "tw": "npx @tailwindcss/cli -i ./public/styles/input.css -o ./public/styles/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

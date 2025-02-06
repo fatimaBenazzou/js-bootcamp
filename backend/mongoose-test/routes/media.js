@@ -1,14 +1,24 @@
 import { Router } from "express";
-import mediaModel from "../models/media.js";
+import mediaModel, { movieModel, tvShowModel } from "../models/media.js";
 const router = Router();
 
 router
     .route("/")
     .post(async (req, res) => {
-        const media = req.body;
+        const { type, ...media } = req.body;
 
         try {
-            const newMedia = await mediaModel.create(media);
+            let newMedia;
+            switch (type) {
+                case "Movie":
+                    newMedia = await movieModel.create(media);
+                    break;
+                case "TvShow":
+                    newMedia = await tvShowModel.create(media);
+                    break;
+                default:
+                    throw new Error("Invalid media type ");
+            }
             res.json({ data: newMedia, status: "success" });
         } catch (error) {
             res.json({ message: error.message, status: "error" });
@@ -38,10 +48,17 @@ router
     })
     .put(async (req, res) => {
         const { mediaId } = req.params;
-        const media = req.body;
+        const updateData = req.body;
         try {
-            const updatedMedia = await mediaModel.findByIdAndUpdate(mediaId, media, { new: true });
-            res.json({ data: updatedMedia, status: "success" });
+            const media = await mediaModel.findById(mediaId);
+            if (!media) throw new Error("Media not found");
+
+            Object.keys(updateData).forEach((key) => {
+                media[key] = updateData[key];
+            });
+
+            await media.save();
+            res.json({ data: media, status: "success" });
         } catch (error) {
             res.json({ message: error.message, status: "error" });
         }
