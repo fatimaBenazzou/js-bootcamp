@@ -5,20 +5,77 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Edit Expense</title>
     </head>
-    <body>
-        <h1>Edit Expense</h1>
-        <form action="/edit/<%= expense.id  %>" method="post">
-            <input type="text" name="description" value="<%= expense.description%>" required />
-            <input type="number" name="amount" value="<%= expense.amount %>" required min="0" />
-            <select name="category" required>
-                <% categories.forEach((category) => { %>
-                    <option value="<%= category %>" <%= category === expense.category ? 'selected' : '' %>><%= category %></option>
-                <% }) %>
-            </select>
-            <input type="date" name="date" required />
-            <button type="submit">Update Expense</button>
-        </form>
+    <body class="bg-base-200 p-8 font-sans">
+        <!-- En-tête -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-light text-base-content">Edit Expense</h1>
+            <p class="text-base-content/70 mt-2">Update your expense details</p>
+        </header>
 
-        <a href="/">Back to expenses</a>
+        <!-- Formulaire d'édition -->
+        <section class="mb-12">
+            <form action="/edit/<%= expense.id %>" method="POST" class="card bg-base-100 shadow-sm p-6 max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input
+                        type="text"
+                        name="description"
+                        value="<%= expense.description %>"
+                        required
+                        class="input input-bordered w-full"
+                        placeholder="Description"
+                    />
+                    <input
+                        type="number"
+                        name="amount"
+                        value="<%= expense.amount %>"
+                        required
+                        class="input input-bordered w-full"
+                        placeholder="Amount"
+                    />
+                    <select
+                        name="category"
+                        required
+                        class="select select-bordered w-full"
+                    >
+                        <% categories.forEach((category) => { %>
+                        <option value="<%= category %>" <%= category === expense.category ? 'selected' : '' %>>
+                            <%= category %>
+                        </option>
+                        <% }) %>
+                    </select>
+                    <input
+                        type="date"
+                        name="date"
+                        value="<%= expense.date.toISOString().split('T')[0] %>"
+                        required
+                        class="input input-bordered w-full"
+                    />
+                </div>
+                <div class="mt-6 flex justify-end gap-4">
+                    <a
+                        href="/"
+                        class="btn btn-ghost"
+                    >
+                        Cancel
+                    </a>
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Update Expense
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Lien de retour -->
+        <div class="text-center">
+            <a
+                href="/"
+                class="btn btn-ghost"
+            >
+                <i class="fas fa-arrow-left"></i> Back to Expenses
+            </a>
+        </div>
     </body>
 </html>

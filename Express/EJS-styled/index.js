@@ -1,38 +1,44 @@
 import "dotenv/config";
 
 import express from "express";
-import mongoose from "mongoose";
 import morgan from "morgan";
 import Expense from "./models/Expense.js";
+import mongoose from "mongoose";
 
 const app = express();
-const PORT = process.env.PORT || 5556;
+const PORT = process.env.PORT || 3333;
 
-//Midleware
+// Middleware
+mongoose.set("debug", true);
+
 app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use("/public", express.static("./public"));
-app.use(express.urlencoded({ extended: true }));
 
-// List of categories
 const categories = ["Food", "Transportation", "Entertainment"];
+const path = "index";
 
-// Routes
+// Route principale
 app.get("/", async (req, res) => {
     try {
         const expenses = await Expense.find();
-        res.render("index", { expenses, categories, selectedCategory: null });
+        res.render("layout", {
+            expenses,
+            categories,
+            selectedCategory: null,
+            path,
+        });
     } catch (error) {
-        res.status(500).send("Error loading expenses");
+        res.status(500).send("Erreur lors de la récupération des dépenses");
     }
 });
 
-// add exense
+// Ajouter une dépense
 app.post("/add", async (req, res) => {
     const { description, amount, category, date } = req.body;
-
     if (!description || !amount || !category || !date) {
-        return res.status(400).send("Please fill all the inputs");
+        return res.status(400).send("Tous les champs doivent être remplis.");
     }
 
     try {
@@ -46,41 +52,31 @@ app.post("/add", async (req, res) => {
         await newExpense.save();
         res.redirect("/");
     } catch (error) {
-        res.status(500).send("Error saving new expense");
+        res.status(500).send("Erreur lors de l'ajout de la dépense");
     }
 });
 
-// filter by category
-app.get("/filter", async (req, res) => {
-    const { category } = req.query;
-    try {
-        const filteredExpenses = category ? await Expense.find({ category }) : await Expense.find();
-        res.render("index", { expenses: filteredExpenses, categories, selectedCategory: category });
-    } catch (error) {
-        res.status(500).send("Error filtering expense");
-    }
-});
-
-// edit page
+// Page d'édition
 app.route("/edit/:id")
     .get(async (req, res) => {
-        const id = req.params.id;
         try {
-            const expense = await Expense.findById(id);
-
-            if (!expense) res.status(400).send("Expense not found.");
-            res.render("edit", { expense, categories });
+            const expense = await Expense.findById(req.params.id);
+            if (!expense) {
+                return res.status(404).send("Dépense non trouvée");
+            }
+            res.render("layout", { expense, categories, path: "edit" });
         } catch (error) {
-            res.status(500).send("Error getting Expense");
+            res.status(500).send("Erreur lors de la récupération de la dépense");
         }
     })
     .post(async (req, res) => {
-        const id = req.params.id;
-        const { description, amount, date, category } = req.body;
-
+        // Mettre à jour une dépense
+        const { description, amount, category, date } = req.body;
         try {
-            const expense = await Expense.findById(id);
-            if (!expense) res.status(400).send("Expense not found.");
+            const expense = await Expense.findById(req.params.id);
+            if (!expense) {
+                return res.status(404).send("Dépense non trouvée");
+            }
 
             expense.description = description;
             expense.amount = parseFloat(amount);
@@ -90,18 +86,32 @@ app.route("/edit/:id")
             await expense.save();
             res.redirect("/");
         } catch (error) {
-            res.status(500).send("Error updating expense");
+            res.status(500).send("Erreur lors de la mise à jour de la dépense");
         }
     });
 
-// delete
+// Supprimer une dépense
 app.post("/delete/:id", async (req, res) => {
-    const id = req.params.id;
     try {
-        await Expense.findByIdAndDelete(id);
+        await Expense.findByIdAndDelete(req.params.id);
         res.redirect("/");
     } catch (error) {
-        res.status(500).send("Error Deleting expense");
+        res.status(500).send("Erreur lors de la suppression de la dépense");
+    }
+});
+
+app.get("/filter", async (req, res) => {
+    const { category } = req.query;
+    try {
+        const filteredExpenses = category ? await Expense.find({ category }) : await Expense.find();
+        res.render("layout", {
+            expenses: filteredExpenses,
+            categories,
+            selectedCategory: category,
+            path,
+        });
+    } catch (error) {
+        res.status(500).send("Erreur lors du filtrage des dépenses");
     }
 });
 
@@ -112,18 +122,23 @@ app.get("/report", async (req, res) => {
 
     try {
         const summary = await getMonthlySummary(parseInt(selectedMonth), parseInt(selectedYear));
-        res.render("report", { summary, selectedMonth, selectedYear });
+        res.render("layout", {
+            summary,
+            selectedMonth,
+            selectedYear,
+            path: "report",
+        });
     } catch (error) {
-        res.status(500).send("Error getting report");
+        res.status(500).send("Erreur lors de la génération du rapport");
     }
 });
 
+// Fonction pour obtenir le résumé mensuel
 async function getMonthlySummary(month, year) {
     const summary = {};
 
     try {
         const expenses = await Expense.find();
-
         expenses.forEach((expense) => {
             const expenseDate = new Date(expense.date);
             if (expenseDate.getMonth() === month && expenseDate.getFullYear() === year) {
@@ -134,8 +149,9 @@ async function getMonthlySummary(month, year) {
             }
         });
     } catch (error) {
-        console.error(error);
+        console.error("Erreur lors de la récupération des dépenses pour le résumé mensuel:", error);
     }
+
     return summary;
 }
 
@@ -148,13 +164,14 @@ mongoose
         dbName: process.env.MONGODB_DBNAME,
     })
     .then(() => {
-        console.log("DB connected !");
+        console.log(`DB is connected ${process.env.MONGODB_DBNAME}`);
 
         app.listen(PORT, () => {
-            console.log(`Server is running on http://localhost:${PORT}`);
+            console.log(`Server started on ${PORT}`);
+            console.log(`http://localhost:${PORT}`);
         });
     })
-    .catch((err) => {
+    .catch((e) => {
         console.log(e);
-        process.exit(-1);
+        process.exit(1);
     });

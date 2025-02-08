@@ -1,8 +1,27 @@
-.container {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
     padding: 20px;
 }
-.userList {
-    display: "flex";
-    flex-wrap: "wrap";
-    justify-content: "center";
+
+.app {
+    width: 100%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Grille de palettes */
+.palettes-grid {
+    max-width: 70%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 20px;
 }

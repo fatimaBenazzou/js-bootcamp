@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Expense Tracker</title>
+        <link rel="stylesheet" href="/public/styles/output.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+    </head>
+    <body class="p-0">
+        <header>
+            <nav class="navbar bg-base-100 shadow-sm">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-xl">Expense</a>
+                </div>
+                <div class="flex-none">
+                    <ul class="menu menu-horizontal px-1">
+                        <li>
+                            <a
+                                href="/"
+                                class="<%= path === 'index'? 'text-primary font-bold': '' %>"
+                                >Home</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="/report"
+                                class="<%= path === 'report'? 'text-primary font-bold': '' %>"
+                                >Report</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="my-8"><%- include(path) %></main>
+    </body>
+</html>

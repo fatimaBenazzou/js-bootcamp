@@ -1,69 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Expense Tracker</title>
+       
     </head>
-    <body>
-        <h1>Expense Tracker</h1>
+    <body class="bg-base-200 p-8 font-sans">
+        <!-- En-tête -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-light text-base-content">Expense Tracker</h1>
+            <p class="text-base-content/70 mt-2">Manage your expenses with ease</p>
+        </header>
 
-        <!-- form to add an expense -->
-        <form action="/add" method="post">
-            <input type="text" name="description" placeholder="Description" required />
-            <input type="number" name="amount" placeholder="Amount" required min="0" />
-            <select name="category" required>
-                <option value="">Select category</option>
-                <% categories.forEach((category) => { %>
-                <option value="<%= category %>"><%= category %></option>
-                <% }) %>
-            </select>
-            <input type="date" name="date" required />
-            <button type="submit">Add Expense</button>
-        </form>
+        <!-- Formulaire pour ajouter une dépense -->
+        <section class="mb-12">
+            <form action="/add" method="POST" class="card bg-base-100 shadow-sm p-6 max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input
+                        type="text"
+                        name="description"
+                        placeholder="Description"
+                        required
+                        class="input input-bordered w-full"
+                    />
+                    <input
+                        type="number"
+                        name="amount"
+                        placeholder="Amount"
+                        required
+                        class="input input-bordered w-full"
+                    />
+                    <select
+                        name="category"
+                        required
+                        class="select select-bordered w-full"
+                    >
+                        <option value="">Select Category</option>
+                        <% categories.forEach((category) => { %>
+                        <option value="<%= category %>"><%= category %></option>
+                        <% }) %>
+                    </select>
+                    <input
+                        type="date"
+                        name="date"
+                        required
+                        class="input input-bordered w-full"
+                    />
+                </div>
+                <button
+                    type="submit"
+                    class="btn btn-primary mt-4 w-full"
+                >
+                    Add Expense
+                </button>
+            </form>
+        </section>
 
-        <!-- filter form -->
-        <form action="/filter" method="get">
-            <select name="category" required>
-                <option value="">All categories</option>
-                <% categories.forEach((category) => { %>
-                <option value="<%= category %>"><%= category %></option>
-                <% }) %>
-            </select>
-            <button type="submit">Filter</button>
-        </form>
-        <!-- expenses table -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Category</th>
-                    <th>Date</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% expenses.forEach(expense => {%>
-                <tr>
-                    <td><%= expense.description %></td>
-                    <td><%= expense.amount %></td>
-                    <td><%= expense.category %></td>
-                    <td><%= expense.date %></td>
-                    <td>
-                        <a href="/edit/<%= expense.id %>">Edit</a>
-                        <form
-                            action="/delete/<%= expense.id %>"
-                            method="post"
-                            style="display: inline"
-                        >
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
+        <!-- Filtrer par catégorie -->
+        <section class="mb-12">
+            <form action="/filter" method="GET" class="card bg-base-100 shadow-sm p-6 max-w-2xl mx-auto">
+                <div class="flex items-center gap-4">
+                    <select
+                        name="category"
+                        class="select select-bordered flex-grow"
+                    >
+                        <option value="">All Categories</option>
+                        <% categories.forEach((category) => { %>
+                        <option value="<%= category %>" <%= category === selectedCategory ? 'selected' : '' %>>
+                            <%= category %>
+                        </option>
+                        <% }) %>
+                    </select>
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                    <a
+                        href="/"
+                        class="btn btn-ghost"
+                    >
+                        <i class="fas fa-sync"></i> Reset
+                    </a>
+                </div>
+            </form>
+        </section>
 
-                <%}); %>
-            </tbody>
-        </table>
+        <!-- Tableau des dépenses -->
+        <section class="mb-12">
+            <div class="card bg-base-100 shadow-sm overflow-hidden max-w-2xl mx-auto">
+                <table class="w-full">
+                    <thead class="bg-base-200">
+                        <tr>
+                            <th class="p-4 text-left text-base-content">Description</th>
+                            <th class="p-4 text-left text-base-content">Amount</th>
+                            <th class="p-4 text-left text-base-content">Category</th>
+                            <th class="p-4 text-left text-base-content">Date</th>
+                            <th class="p-4 text-left text-base-content">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-base-200">
+                        <% expenses.forEach((expense) => { %>
+                        <tr class="hover:bg-base-100 transition-colors">
+                            <td class="p-4 text-base-content"><%= expense.description %></td>
+                            <td class="p-4 text-base-content"><%= expense.amount %></td>
+                            <td class="p-4 text-base-content"><%= expense.category %></td>
+                            <td class="p-4 text-base-content">
+                                <%= new Date(expense.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' }) %>
+                            </td>
+                            <td class="p-4 flex items-center gap-2">
+                                <a
+                                    href="/edit/<%= expense.id %>"
+                                    class="btn btn-sm btn-ghost text-primary"
+                                >
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form
+                                    action="/delete/<%= expense.id %>"
+                                    method="POST"
+                                    class="inline"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-sm btn-ghost text-error"
+                                    >
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </body>
 </html>

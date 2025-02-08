@@ -4,30 +4,14 @@
 //   - Two cloud elements that also move horizontally.
 //   - A text element that moves vertically.
 //   - A "man" element whose height will dynamically change.
-const mountainLeft = document.querySelector("#mountain_left");
-const mountainRight = document.querySelector("#mountain_right");
-const cloud1 = document.querySelector("#clouds_1");
-const cloud2 = document.querySelector("#clouds_2");
-const text = document.querySelector("#text");
-const man = document.querySelector("#man");
 
 // Step 2: Add a Scroll Event Listener
 // - Listen for the `scroll` event on the `window` object to detect user scrolling.
-window.addEventListener("scroll", () => {
-    // Step 3: Retrieve Scroll Value
-    // - Inside the event listener, get the current vertical scroll position.
-    // Search for `scrollY` property.
-    let value = window.scrollY;
+// Step 3: Retrieve Scroll Value
+// - Inside the event listener, get the current vertical scroll position.
+// Search for `scrollY` property.
 
-    mountainLeft.style.left = `-${value / 0.7}px`;
-    mountainRight.style.left = `${value / 0.7}px`;
-    cloud1.style.left = `${value * 2}px`;
-    cloud2.style.left = `-${value * 2}px`;
-    text.style.bottom = `-${value}px`;
-    man.style.height = `${window.innerHeight - value}px`;
-});
 // Fart every 400 pixels scrolled
-fartscroll(100);
 
 // Step 6: Test the Code
 // - Scroll the page to verify the following:

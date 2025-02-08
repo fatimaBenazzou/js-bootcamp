@@ -1,42 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="cupcake">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Report Page</title>
-        <link rel="stylesheet" href="/public/styles/output.css"> 
+        <title>Expense Report</title>       
     </head>
-    <body>
-        <form action="/report" method="GET">
-            <div>
-                <select name="month">
+    <body class="bg-base-200 p-8 font-sans">
+        <!-- En-tête -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-light text-base-content">Expense Report</h1>
+            <p class="text-base-content/70 mt-2">Monthly and yearly expense summary</p>
+        </header>
+
+        <!-- Formulaire pour sélectionner le mois et l'année -->
+        <form action="/report" method="GET" class="card bg-base-100 shadow-sm p-6 max-w-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <select
+                    name="month"
+                    class="select select-bordered w-full"
+                >
                     <option value="">Select Month</option>
-                    <% for(let i =0; i < 12; i++) { %>
-                    <option value="<%= i %>" <%= i === parseInt(selectedMonth)? "selected" : "" %>>
-                        <%= new Date(2023, i).toLocaleString("default", {month : 'long'}) %>
+                    <% for (let i = 0; i < 12; i++) { %>
+                    <option value="<%= i %>" <%= i === parseInt(selectedMonth) ? 'selected' : '' %>>
+                        <%= new Date(2023, i).toLocaleString('default', { month: 'long' }) %>
                     </option>
                     <% } %>
                 </select>
-                <input type="number" name="year" placeholder="Year" value="<%= selectedYear %>" />
-
+                <input
+                    type="number"
+                    name="year"
+                    value="<%= selectedYear %>"
+                    placeholder="Year"
+                    class="input input-bordered w-full"
+                />
             </div>
-            <button type="submit">
+            <button
+                type="submit"
+                class="btn btn-primary mt-4 w-full"
+            >
                 Generate Report
             </button>
         </form>
-
-        <section>
-            <h2>
-                Monthly Summary for <%= new Date(selectedYear, selectedMonth).toLocaleString("default", {month: "long", year: "numeric"}) %>
+ 
+        <!-- Résumé mensuel -->
+        <section class="mb-12 mt-8">
+            <h2 class="text-2xl font-light text-base-content mb-6 text-center">
+                Monthly Summary for <%= new Date(selectedYear, selectedMonth).toLocaleString('default', { month: 'long', year: 'numeric' }) %>
             </h2>
-            <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-2xl mx-auto">
                 <% Object.keys(summary).forEach((category) => { %>
-                    <div>
-                        <h3><%= category %></h3>
-                        <p><%= summary[category] %></p>
-                    </div>
-                <%})%>
+                <div class="card bg-base-100 shadow-sm p-6">
+                    <h3 class="text-lg text-base-content"><%= category %></h3>
+                    <p class="text-2xl font-light text-primary"><%= summary[category] %></p>
+                </div>
+                <% }) %>
             </div>
         </section>
+
+        <!-- Lien de retour -->
+        <div class="text-center">
+            <a
+                href="/"
+                class="btn btn-ghost"
+            >
+                <i class="fas fa-arrow-left"></i> Back to Expenses
+            </a>
+        </div>
     </body>
 </html>
