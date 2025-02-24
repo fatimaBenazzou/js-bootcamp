@@ -40,3 +40,7 @@ export async function registerUser(req, res) {
         res.status(400).json({ error: error.message });
     }
 }
+
+export function checkUser(req, res) {
+    res.json({ data: req.user.toSimpleUser() });
+}

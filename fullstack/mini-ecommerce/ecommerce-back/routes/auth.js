@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { loginUser, registerUser } from "../controllers/auth.js";
+import { loginUser, registerUser, checkUser } from "../controllers/auth.js";
+import { isLoggedIn, verifyCredentials } from "../middlewares/auth.js";
 
 const authRouter = Router();
-authRouter.get("/");
+authRouter.get("/", verifyCredentials, isLoggedIn, checkUser);
 authRouter.post("/login", loginUser);
 authRouter.post("/register", registerUser);
 
