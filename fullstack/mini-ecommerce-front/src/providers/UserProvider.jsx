@@ -1,6 +1,7 @@
 import { useLocalStorage } from "@uidotdev/usehooks";
 import UserContext from "../contexts/user";
 
+// eslint-disable-next-line react/prop-types
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useLocalStorage("user", null);
 

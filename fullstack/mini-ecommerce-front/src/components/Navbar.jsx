@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import UserContext from "../contexts/user";
+import ToggleButton from "./ToggleButton";
 
 const Navbar = () => {
     const { user, setUser } = useContext(UserContext);
@@ -15,6 +16,7 @@ const Navbar = () => {
             ) : (
                 <a href="/auth/login">Login</a>
             )}
+            <ToggleButton />
         </nav>
     );
 };
