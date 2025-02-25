@@ -16,8 +16,20 @@ function Login() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="email" name="email" placeholder="Email" onChange={handleChange} />
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+            <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleChange}
+                value={form.email}
+            />
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleChange}
+                value={form.password}
+            />
             <button disabled={loading} type="submit">
                 {loading ? "Loading..." : "Login"}
             </button>

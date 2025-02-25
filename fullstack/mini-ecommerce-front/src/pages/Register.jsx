@@ -21,10 +21,32 @@ const Register = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input name="firstName" placeholder="First Name" onChange={handleChange} />
-            <input name="lastName" placeholder="Last Name" onChange={handleChange} />
-            <input name="email" placeholder="Email" type="email" onChange={handleChange} />
-            <input name="password" placeholder="Password" type="password" onChange={handleChange} />
+            <input
+                name="firstName"
+                placeholder="First Name"
+                onChange={handleChange}
+                value={form.firstName}
+            />
+            <input
+                name="lastName"
+                placeholder="Last Name"
+                onChange={handleChange}
+                value={form.lastName}
+            />
+            <input
+                name="email"
+                placeholder="Email"
+                type="email"
+                onChange={handleChange}
+                value={form.email}
+            />
+            <input
+                name="password"
+                placeholder="Password"
+                type="password"
+                onChange={handleChange}
+                value={form.password}
+            />
             <button disabled={loading} type="submit">
                 {loading ? "Loading..." : "Register"}
             </button>

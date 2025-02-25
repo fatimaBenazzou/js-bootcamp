@@ -1,23 +1,25 @@
-import { useContext } from "react";
-import UserContext from "../contexts/user";
+import useAuth from "../hooks/useAuth";
 import ToggleButton from "./ToggleButton";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
-    const { user, setUser } = useContext(UserContext);
-
+    const { user, logout } = useAuth();
     return (
-        <nav>
-            <h1>MyShop</h1>
-            {user ? (
-                <div>
-                    <span>Welcome, {user.email}!</span>
-                    <button onClick={() => setUser(null)}>Logout</button>
-                </div>
-            ) : (
-                <a href="/auth/login">Login</a>
-            )}
-            <ToggleButton />
-        </nav>
+        <header>
+            <NavLink to={"/shop/products"}>Shop</NavLink>
+            <nav>
+                {user ? (
+                    <>
+                        <NavLink to={"/shop/cart"}>Cart</NavLink>
+                        <NavLink>Profile</NavLink>
+                        <button onClick={logout}>Logout</button>
+                    </>
+                ) : (
+                    <NavLink to="/auth/login">Login</NavLink>
+                )}
+                <ToggleButton />
+            </nav>
+        </header>
     );
 };
 
