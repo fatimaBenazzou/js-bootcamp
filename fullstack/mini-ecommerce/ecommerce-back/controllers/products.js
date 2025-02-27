@@ -2,10 +2,26 @@ import productModel from "../models/product.js";
 
 export async function getProducts(req, res) {
     try {
-        const products = await productModel.find();
+        const { search, sorting, sortingDirection } = req.query;
+
+        const products = await productModel
+            .find(
+                search
+                    ? {
+                          name: new RegExp(search, "i"),
+                      }
+                    : undefined
+            )
+            .sort(
+                sorting
+                    ? {
+                          [sorting]: sortingDirection === "asc" ? 1 : -1,
+                      }
+                    : { createdAt: 1 }
+            );
         res.json({ data: products });
-    } catch (error) {
-        res.json({ error: error.message });
+    } catch (e) {
+        res.json({ error: e.message });
     }
 }
 export async function createProduct(req, res) {
