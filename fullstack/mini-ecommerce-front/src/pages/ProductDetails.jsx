@@ -1,32 +1,19 @@
-import { useEffect, useState } from "react";
 import { getProductById } from "../api/endpoints/products";
 import { useParams } from "react-router";
 import useCart from "../hooks/useCart";
+import { useQuery } from "@tanstack/react-query";
 
 function ProductDetails() {
     const { productId } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const { data, isFetching, isError, error } = useQuery({
+        queryKey: ["products", productId],
+        queryFn: () => getProductById(productId),
+    });
     const { addToCart } = useCart();
 
-    useEffect(() => {
-        async function fetchProduct() {
-            setLoading(true);
-            try {
-                const response = await getProductById(productId);
-                setProduct(response.data.data);
-            } catch (error) {
-                console.Error("Fetching products failed", error);
-            }
-            setLoading(false);
-        }
-
-        fetchProduct();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    if (loading) return <p>Loading...</p>;
-    if (!product) return <p>Product Not found.</p>;
+    if (isFetching) return <p>Loading...</p>;
+    if (isError) return <p>Error: {error.message}</p>;
+    const product = data.data.data || {};
 
     return (
         <div>

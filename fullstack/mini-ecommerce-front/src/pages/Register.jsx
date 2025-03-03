@@ -1,8 +1,26 @@
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
+import useUser from "../hooks/useUser";
+import { useMutation } from "@tanstack/react-query";
+import { register as registerApi } from "../api/endpoints/auth";
+import toast from "react-hot-toast";
 
 const Register = () => {
-    const { register, loading } = useAuth();
+    const { setUser } = useUser();
+    // const { login, loading } = useAuth();
+    const { isPending, mutate: registerAction } = useMutation({
+        mutationFn: registerApi,
+        mutationKey: ["register"],
+        onSuccess: (response) => {
+            const { token, user } = response.data;
+
+            localStorage.setItem("token", token);
+            setUser(user);
+            toast.success(`Account created! Welcome ${user.firstName}`);
+        },
+        onError: (error) => {
+            toast.error(error.response?.data?.error || "register failed");
+        },
+    });
     const [form, setForm] = useState({
         firstName: "",
         lastName: "",
@@ -16,7 +34,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        register(form);
+        registerAction(form);
     };
 
     return (
@@ -47,8 +65,8 @@ const Register = () => {
                 onChange={handleChange}
                 value={form.password}
             />
-            <button disabled={loading} type="submit">
-                {loading ? "Loading..." : "Register"}
+            <button disabled={isPending} type="submit">
+                {isPending ? "Loading..." : "Register"}
             </button>
         </form>
     );

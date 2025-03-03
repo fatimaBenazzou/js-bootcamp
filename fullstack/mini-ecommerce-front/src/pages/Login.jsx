@@ -1,8 +1,25 @@
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import { login as loginApi } from "../api/endpoints/auth";
+import useUser from "../hooks/useUser";
+import toast from "react-hot-toast";
 
 function Login() {
-    const { login, loading } = useAuth();
+    const { setUser } = useUser();
+    // const { login, loading } = useAuth();
+    const { isPending, mutate: loginAction } = useMutation({
+        mutationFn: loginApi,
+        mutationKey: ["login"],
+        onSuccess: (response) => {
+            const { token, user } = response.data;
+            localStorage.setItem("token", token);
+            setUser(user);
+            toast.success(`Welcome ${user.firstName}`);
+        },
+        onError: (error) => {
+            toast.error(error.response?.data?.error || "Login failed");
+        },
+    });
     const [form, setForm] = useState({ email: "", password: "" });
 
     const handleChange = (e) => {
@@ -11,7 +28,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        login(form);
+        loginAction(form);
     };
 
     return (
@@ -30,8 +47,8 @@ function Login() {
                 onChange={handleChange}
                 value={form.password}
             />
-            <button disabled={loading} type="submit">
-                {loading ? "Loading..." : "Login"}
+            <button disabled={isPending} type="submit">
+                {isPending ? "Loading..." : "Login"}
             </button>
         </form>
     );

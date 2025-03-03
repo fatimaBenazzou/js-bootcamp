@@ -1,9 +1,13 @@
-import useAuth from "../hooks/useAuth";
+import useUser from "../hooks/useUser";
 import ToggleButton from "./ToggleButton";
 import { NavLink } from "react-router";
 
 const Navbar = () => {
-    const { user, logout } = useAuth();
+    const { user, setUser } = useUser();
+    function logout() {
+        localStorage.removeItem("token");
+        setUser(null);
+    }
     return (
         <header>
             <NavLink to={"/shop/products"}>Shop</NavLink>
