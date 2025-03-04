@@ -1,28 +1,30 @@
-const sortingMap = {
-    name: "Name",
-    "price.current": "Price",
-    createdAt: "Newest",
-};
+import { useEffect, useState } from "react";
+import useShop from "../hooks/useShop";
+import { useDebounce } from "@uidotdev/usehooks";
 
 export default function SearchBar() {
+    const { setSearch } = useShop();
+    const [currentSearch, setCurrentSearch] = useState("");
+    const debouncedSearch = useDebounce(currentSearch, 300);
+
+    useEffect(() => {
+        setSearch(debouncedSearch);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debouncedSearch]);
+
     return (
         <form>
-            <div>
-                <label>
-                    <input type="search" placeholder="Search for products" />
-                    <span>🔍</span>
-                </label>
-                <div>
-                    <select name="sorting">
-                        {Object.entries(sortingMap).map(([value, display]) => (
-                            <option key={value} value={value}>
-                                {display}
-                            </option>
-                        ))}
-                    </select>
-                    <button onClick={() => {}}></button>
-                </div>
-            </div>
+            <label>
+                <input
+                    type="search"
+                    placeholder="Search for products"
+                    value={currentSearch}
+                    onChange={(e) => {
+                        setCurrentSearch(e.target.value);
+                    }}
+                />
+                <span>🔍</span>
+            </label>
         </form>
     );
 }

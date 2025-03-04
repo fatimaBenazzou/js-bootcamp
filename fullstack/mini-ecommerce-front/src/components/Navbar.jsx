@@ -1,4 +1,5 @@
 import useUser from "../hooks/useUser";
+import SearchBar from "./SearchBar";
 import ToggleButton from "./ToggleButton";
 import { NavLink } from "react-router";
 
@@ -11,6 +12,7 @@ const Navbar = () => {
     return (
         <header>
             <NavLink to={"/shop/products"}>Shop</NavLink>
+            <SearchBar />
             <nav>
                 {user ? (
                     <>
